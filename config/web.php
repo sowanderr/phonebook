@@ -1,7 +1,7 @@
 <?php
 
 $params = require(__DIR__ . '/params.php');
-//вставил eqwe
+//вставил eqweads
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
