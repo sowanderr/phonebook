@@ -3,11 +3,6 @@
 $params = require(__DIR__ . '/params.php');
 //вставил
 $config = [
-
-    'urlManager' => [
-	          'showScriptName' => false,
-	          'enablePrettyUrl' => true
-	                  ],
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
