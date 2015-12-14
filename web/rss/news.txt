@@ -1,0 +1,19 @@
+################### Таблица msgs ######################
+CREATE TABLE msgs(
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	title TEXT,
+	category INTEGER,
+	description TEXT,
+	source TEXT,
+	datetime INTEGER
+)
+#######################################################
+################### Таблица category ######################
+CREATE TABLE category(
+	id INTEGER,
+	name TEXT
+)
+#######################################################
+################### Заполнение таблицы category ######################
+1
+######################################################################
