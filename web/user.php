@@ -18,4 +18,7 @@ if($super1 instanceof User)
 echo '<br>';
 echo "всего юзеров " . User::$howu;
 echo "<br>всего супер юзеров" . SuperUser::$hows ."<br>";
+echo __DIR__ ;
+$db = new SQLite3('dbsqlite.conf');
+
 ?>
