@@ -64,7 +64,10 @@ VALUES('$t', '$c', '$d', '$s', $dt)";
         return $this->db2Arr($res);
     }
 
-	function deleteNews($id){}
+	function deleteNews($id){
+        $sql = "DELETE FROM msgs WHERE id=$id";
+        $this->_db->exec($sql) or die ($this->_db->lastErrorMsg());
+    }
     public function showcon(){
         echo self::DB_NAME;
     }
