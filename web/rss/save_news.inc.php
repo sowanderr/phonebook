@@ -6,7 +6,7 @@ $c = $news->clearInt($_POST['category']);
 if (empty($t) or empty($d)) {
     $errMsg = 'Заполни сука поля!';
 }else{
-$news->saveNews($t, $d, $s, $c);
+$news->saveNews($t, $c, $d, $s);
   echo 'ok';
     echo $t, $d, $s, $c;
     header('Location: news.php');
