@@ -7,7 +7,6 @@ class NewsDB implements INewsDB{
 
     function __construct()
     {
-
         if (file_exists(self::DB_NAME)) {
             $this->_db = new SQLite3(self::DB_NAME);}
         else{
@@ -45,8 +44,8 @@ class NewsDB implements INewsDB{
     }
     function saveNews($t, $c, $d, $s){
         $dt = time();
-        $sql = "INSERT INTO msgs(title,category,description,source,datetime)
-VALUES('$t', $c, '$d', '$s', $dt)";
+        $sql = "INSERT INTO msgs(title, category, description, source, datetime)
+VALUES('$t', '$c', '$d', '$s', $dt)";
         $this->_db->exec($sql) or die($this->_db->lastErrorMsg());
     }
 
