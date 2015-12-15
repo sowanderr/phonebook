@@ -5,6 +5,9 @@ $errMsg = '';
 if($_SERVER['REQUEST_METHOD']==='POST') {
 	include 'save_news.inc.php';
 	}
+if (isset($_GET['del'])) {
+	include "delete_news.inc.php";
+}
 ?>
 
 
@@ -20,7 +23,7 @@ if($_SERVER['REQUEST_METHOD']==='POST') {
 <h1>Последние новости</h1>
 <?php
 if($errMsg)
-	echo "<h3>$errMsg</h3>";
+	echo "<h3>$errMsg быстро </h3>";
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
@@ -34,7 +37,7 @@ if($errMsg)
 </select>
 <br />
 Текст новости:<br />
-<textarea name="description" cols="50" rows="5"></textarea><br />
+<textarea name="description" cols="50" rows="5" placeholder="вводи новость"></textarea><br />
 Источник:<br />
 <input type="text" name="source" /><br />
 <br />
@@ -43,7 +46,7 @@ if($errMsg)
 </form>
 
 <?php
-
+include 'get_news.inc.php';
 ?>
 
 </body>
