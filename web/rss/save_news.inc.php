@@ -9,7 +9,7 @@ if (empty($t) or empty($d)) {
 $news->saveNews($t, $d, $s, $c);
   echo 'ok';
     echo $t, $d, $s, $c;
-    //header('Location: news.php');
+    header('Location: news.php');
 
     }
 ?>
