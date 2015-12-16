@@ -43,11 +43,20 @@ class NewsDB implements INewsDB{
         return abs((int)$data);
     }
     function saveNews($t, $c, $d, $s){
+        try{
         $dt = time();
         $sql = "INSERT INTO msgs(title, category, description, source, datetime)
 VALUES('$t', '$c', '$d', '$s', $dt)";
-        $this->_db->exec($sql) or die($this->_db->lastErrorMsg());
-    }
+        $res = $this->_db->exec($sql);
+        if(!$res){
+            throw new Exception($this->_db->lastErrorMsg());
+            return true;
+        }
+        }catch(Exception $e){
+            //,k,kfbla
+            return false;
+        }
+        }
     protected function db2Arr($data){
         $arr =array();
         while($row = $data->fetchArray(SQLITE3_ASSOC))
@@ -55,18 +64,34 @@ VALUES('$t', '$c', '$d', '$s', $dt)";
         return $arr;
     }
 	function getNews(){
-        $sql = "SELECT msgs.id as id, title, category.name as category, description,
-        source, datetime
-            FROM msgs, category
-            WHERE category.id=msgs.category
-            ORDER BY msgs.id DESC";
-        $res = $this->_db->query($sql) or die($this->_db->lastErrorMsg());
-        return $this->db2Arr($res);
-    }
+        try {
+            $sql = "SELECT msgs.id as id, title, category.name as category, description,
+            source, datetime
+                FROM msgs, category
+                WHERE category.id=msgs.category
+                ORDER BY msgs.id DESC";
+            $res = $this->_db->query($sql);
+            if(!is_object($res))
+                throw new Exception($this->_db->lastErrorMsg());
+            return $this->db2Arr($res);
+            }catch(Exception $e){
+            //,kfблабла маил ерор
+            return false;
+        }
+        }
 
 	function deleteNews($id){
-        $sql = "DELETE FROM msgs WHERE id=$id";
-        $this->_db->exec($sql) or die ($this->_db->lastErrorMsg());
+        try {
+            $sql = "DELETE FROM msgs WHERE id=$id";
+            $res = $this->_db->exec($sql);
+            if(!$res){
+                throw new Exception($this->_db->lastErrorMsg());
+            }
+                return true;
+        }catch(Exception $e){
+            //шлем $e на почту
+            return false;
+        }                                //or die ($this->_db->lastErrorMsg());
     }
     public function showcon(){
         echo self::DB_NAME;

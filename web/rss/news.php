@@ -23,7 +23,7 @@ if (isset($_GET['del'])) {
 <h1>Последние новости</h1>
 <?php
 if($errMsg)
-	echo "<h3>$errMsg быстро </h3>";
+	echo "<h3>$errMsg</h3>";
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
