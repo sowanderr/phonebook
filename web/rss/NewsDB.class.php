@@ -1,6 +1,6 @@
 <?php
 require 'INewsDB.class.php';
-class NewsDB implements INewsDB{
+class NewsDB implements IN{
 
     protected $_db;
     const DB_NAME = __DIR__ ."/news.db";
