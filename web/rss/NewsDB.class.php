@@ -4,6 +4,47 @@ class NewsDB implements INewsDB{
 
     protected $_db;
     const DB_NAME = __DIR__ ."/news.db";
+    const RSS_NAME = 'rss.xml';
+    const RSS_TITLE = "Последние новости";
+    const RSS_LINK = "http://localhost/web/rss/news.php";
+
+    function createRss(){
+        $dom = new DOMDocument('1.0', 'utf-8');
+        $dom->formatOutput = true;
+        $dom->preserveWhiteSpace = false;
+        $rss = $dom->createElement('rss');
+        $version = $dom->createAttribute("version");
+        $version->value = '2.0';
+        $dom->appendChild($rss);
+        $channel = $dom->createElement('channel');
+        $rss->appendChild($channel);
+        $t = $dom->createElement('title', self::RSS_NAME);
+        $l = $dom->createElement('link', self::RSS_LINK);
+        $channel->appendChild($t);
+        $channel->appendChild($l);
+        $lenta = $this->getNews();
+            if(!$lenta){
+                return false;
+            }
+        foreach($lenta as $news){
+            $i = $dom->createElement('item');
+            $t = $dom->createElement('title', $news['title']);
+            $c = $dom->createElement('category', $news['category']);
+            $d = $dom->createElement('description', $news['description']);
+            $txt = self::RSS_LINK .'?id='.$news['id'];
+            $l = $dom->createElement('link', $txt);
+            $dt = date('r', $news['datetime']);
+            $pd = $dom->createElement('pubDate', $dt);
+            $i->appendChild($t);
+            $i->appendChild($l);
+            $i->appendChild($d);
+            $i->appendChild($pd);
+            $i->appendChild($c);
+            $channel->appendChild($i);
+            }
+        $dom->save(self::RSS_NAME);
+
+    }
 
     function __construct()
     {
@@ -46,12 +87,12 @@ class NewsDB implements INewsDB{
         try{
         $dt = time();
         $sql = "INSERT INTO msgs(title, category, description, source, datetime)
-VALUES('$t', '$c', '$d', '$s', $dt)";
+VALUES('$t', '$c', '$d', '$s', '$dt')";
         $res = $this->_db->exec($sql);
-        if(!$res){
+        if(!$res)
             throw new Exception($this->_db->lastErrorMsg());
+            $this->createRss();
             return true;
-        }
         }catch(Exception $e){
             //,k,kfbla
             return false;
