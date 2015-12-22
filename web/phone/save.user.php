@@ -15,7 +15,7 @@ if(!$phone->saveUser($ph,$o,$f,$fn,$sn,$dol)){
         $errMsg = "ну ептить";
     }else {
     $errMsg = 'все ок';
-    echo 'qwewqdsax111111111111';
+    echo 'qwewqdsax11111111111';
     header('Location: index.php');
 }
 

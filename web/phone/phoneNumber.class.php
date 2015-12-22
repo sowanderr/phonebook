@@ -33,7 +33,7 @@ class phoneNumber implements IN{
     }
     function __destruct()
     {
-     unset($this->_db);   // TODO: Implement __destruct() method.
+        unset($this->_db);   // TODO: Implement __destruct() method.
         echo "ЗААНСЕТИЛ";
         echo self::DB_NAME;
     }
@@ -56,15 +56,15 @@ VALUES('$ph','$o','$f','$fn','$sn','$dol','$dt')";
     function getUser()
     {
         try{
-        $sql = "SELECT msgs.id as id, fname, sname, famil, otdel.name as otdel, phonenamber, dol, datetime
+            $sql = "SELECT msgs.id as id, fname, sname, famil, otdel.name as otdel, phonenamber, dol, datetime
          FROM msgs, otdel
          WHERE otdel.id=msgs.otdel
          ORDER BY msgs.id DESC";
-        $res = $this->_db->query($sql);
-        if (!is_object($res))
-            throw new Exception($this->_db->lastErrorMsg());
-        return $this->db2Arr($res);
-    }catch(Exception $e){
+            $res = $this->_db->query($sql);
+            if (!is_object($res))
+                throw new Exception($this->_db->lastErrorMsg());
+            return $this->db2Arr($res);
+        }catch(Exception $e){
             return false;
         }
     }
@@ -83,13 +83,11 @@ VALUES('$ph','$o','$f','$fn','$sn','$dol','$dt')";
     {
         // TODO: Implement deleteUser() method.
     }
-
-
+    public function urihref($uri){
+        $uri = 'http://'. $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        return $uri;
+    }
 }
-
-
-
-
 ?>
 
 

@@ -26,7 +26,7 @@ if(!is_array($result)){
 <h2>$phonenamber</2h>
 <br>[$otdel] @ $dt</p>
 <p align = 'right'>
-<a href='news.php?del=$id'>удалить</a>
+<a href=' <? . $phone->urihref('123'). index.php?del=$id .?> >удалить</a>
 </p>
 HTML_ENTITIES;
 }

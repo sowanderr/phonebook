@@ -4,7 +4,7 @@
  * User: anton
  * Date: 18.12.15
  * Time: 19:21
- include
+ include213
  */
 require 'phoneNumber.class.php';
 $phone = new phoneNumber;
@@ -12,6 +12,9 @@ $errMsg='';
 if($_SERVER['REQUEST_METHOD']==='POST') {
    echo "преквест метод пост работает";
     include 'save.user.php';
+}
+if($_GET['del']==$id){
+
 }
 ?>
 
@@ -29,7 +32,7 @@ if($errMsg)
 
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
-    Номер телефона <br />
+    Номер телефона <br/>
     <input type="text" name="phonenamber" /><br />
     Выберите отдел:<br />
     <select name="otdel">
@@ -48,10 +51,14 @@ if($errMsg)
     <input type="text" name="dol" /><br />
 
     <input type="submit" method="post" value="Добавить!" />
-    </form>
- <?php
-    include 'get_user.inc.php';
- ?>
+</form>
+<?php
+include 'get_user.inc.php';
+//var_dump($_SERVER);
+echo $_GET['del'];
+echo $phone->urihref();
+
+?>
 
 </body>
 </html>
