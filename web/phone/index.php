@@ -1,11 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: anton
- * Date: 18.12.15
- * Time: 19:21
- include213
- */
+
 require 'phoneNumber.class.php';
 $phone = new phoneNumber;
 $errMsg='';
@@ -17,8 +11,9 @@ if($_GET['del']){
     echo 'get del работает';
  $id = $phone->clearInt($_GET['del']);
     $phone->deleteUser($id);
-    echo "удалена запись ID $id";
-    header ("Location: index.php");
+    $errMsg = "Все ок, удалили";
+     header ("Location: index.php");
+
 }
 ?>
 

@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: anton
- * Date: 21.12.15
- * Time: 23:12
- */
+
 $ph = $phone->clearInt($_POST['phonenamber']);
 $o = $phone->clearInt($_POST['otdel']);
 $f = $phone->clearStr($_POST['fname']);
@@ -16,4 +11,5 @@ if(!$phone->saveUser($ph,$o,$f,$fn,$sn,$dol)){
     }else {
     $errMsg = 'Видимо что то случилось';
     }
+header ("Location: index.php");
 ?>

@@ -72,7 +72,8 @@ VALUES('$ph','$o','$f','$fn','$sn','$dol','$dt')";
         }
     }
     //Первая буква Верхний регистр
-    function mb_ucfirst($text) {
+    function mb_ucfirst($text) // первая буква заглавная Кирилица
+    {
         mb_internal_encoding("UTF-8");
         return mb_strtoupper(mb_substr($text, 0, 1)) . mb_substr($text, 1);
     }
@@ -89,7 +90,8 @@ VALUES('$ph','$o','$f','$fn','$sn','$dol','$dt')";
 
         // TODO: Implement deleteUser() method.
     }
-    public function urihref(){
+    public function urihref() //http*.php
+    {
         $uri = 'http://'. $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         return $uri;
     }
