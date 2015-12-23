@@ -13,8 +13,12 @@ if($_SERVER['REQUEST_METHOD']==='POST') {
    echo "преквест метод пост работает";
     include 'save.user.php';
 }
-if($_GET['del']==$id){
-
+if($_GET['del']){
+    echo 'get del работает';
+ $id = $phone->clearInt($_GET['del']);
+    $phone->deleteUser($id);
+    echo "удалена запись ID $id";
+    header ("Location: index.php");
 }
 ?>
 
@@ -55,8 +59,8 @@ if($errMsg)
 <?php
 include 'get_user.inc.php';
 //var_dump($_SERVER);
-echo $_GET['del'];
-echo $phone->urihref();
+//echo $_GET['del'];
+//echo $phone->urihref();
 
 ?>
 

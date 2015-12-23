@@ -16,6 +16,7 @@ if(!is_array($result)){
         $fname=$item['fname'];
         $sname=$item['sname'];
         $famil=$item['famil'];
+        $urihref=$phone->urihref();
         $phonenamber = $item['phonenamber'];
         $otdel=nl2br($item['otdel']);
         $dol=$item['dol'];
@@ -26,7 +27,7 @@ if(!is_array($result)){
 <h2>$phonenamber</2h>
 <br>[$otdel] @ $dt</p>
 <p align = 'right'>
-<a href=' <? . $phone->urihref('123'). index.php?del=$id .?> >удалить</a>
+<a href="$urihref?del=$id" >удалить</a>
 </p>
 HTML_ENTITIES;
 }

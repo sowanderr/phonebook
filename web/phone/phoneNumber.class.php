@@ -4,7 +4,7 @@ class phoneNumber implements IN{
     protected $_db;
     const DB_NAME = __DIR__ . "/phone.db";
 
-    function __construct()
+    function __construct()  //конструктором 2 таблицы msgs и otdel, в отдел сразу несколько отделов.
     {
         if (file_exists(self::DB_NAME)) {
             $this->_db = new SQLite3(self::DB_NAME);
@@ -42,8 +42,11 @@ class phoneNumber implements IN{
         $data = $this->mb_ucfirst($data);
         return $this->_db->escapeString($data);
     }
-    function clearInt($data){
-        return abs((int)$data);
+    function clearInt($data) //intval приводит к целое число
+    {
+
+        $data = intval($data);
+        return $data;
     }
     function saveUser($ph,$o,$f,$fn,$sn,$dol)
     {
@@ -81,9 +84,12 @@ VALUES('$ph','$o','$f','$fn','$sn','$dol','$dt')";
     }
     function deleteUser($id)
     {
+        $sql = "DELETE FROM msgs WHERE msgs.id='$id'";
+        $this->_db->exec($sql) or die($this->_db->lastErrorMsg());
+
         // TODO: Implement deleteUser() method.
     }
-    public function urihref($uri){
+    public function urihref(){
         $uri = 'http://'. $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         return $uri;
     }
