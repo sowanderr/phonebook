@@ -1,9 +1,9 @@
 <?php
 require 'INewsDB.class.php';
-class NewsDB implements IN{
+class NewsDB implements INewsDB{
 
     protected $_db;
-    const DB_NAME = __DIR__ ."/news.db";
+    const DB_NAME ="/var/www/basic/web/rss/news.db";
     const RSS_NAME = 'rss.xml';
     const RSS_TITLE = "Последние новости";
     const RSS_LINK = "http://localhost/web/rss/news.php";
