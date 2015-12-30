@@ -1,6 +1,6 @@
 <?php
 define('FILE_NAME', 'news.xml');
-define('RSS_URL', 'http://localhost/web/rss/rss.xml');
+define('RSS_URL', 'http://localhost/rss/rss.xml');
 
 function download($url, $file_name){
 	$file = file_get_contents($url);
